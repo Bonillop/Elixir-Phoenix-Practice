@@ -1,5 +1,7 @@
 # Discuss
 
+This is a practice phoenix app made following the course `The complete Elixir and Phoenix bootcamp` at udemy, still a work in progress
+
 To start your Phoenix server:
 
   * Setup the project with `mix setup`
