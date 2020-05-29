@@ -18,7 +18,16 @@ defmodule DiscussWeb.Router do
 
     get "/", PageController, :index
 
-    get "/topics/new", TopicController, :new
+    # get "/topics", TopicController, :index
+    # get "/topics/new", TopicController, :new
+    # post "/topics", TopicController, :create
+    # get "/topics/:id/edit", TopicController, :edit
+    # put "/topics/:id", TopicController, :update
+    # delete "/topics/:id", TopicController, :delete
+
+    # The resources helper defines all the restful routes according to the conventions
+    resources "/topics", TopicController
+
   end
 
   # Other scopes may use custom stacks.
