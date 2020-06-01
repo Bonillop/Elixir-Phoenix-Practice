@@ -7,6 +7,7 @@ defmodule DiscussWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug Discuss.Plugs.SetUser
   end
 
   pipeline :api do
@@ -27,7 +28,14 @@ defmodule DiscussWeb.Router do
 
     # The resources helper defines all the restful routes according to the conventions
     resources "/topics", TopicController
+  end
 
+  scope "/auth", DiscussWeb do
+    pipe_through :browser
+
+    get "/signout", AuthController, :signout
+    get "/:provider", AuthController, :request # Function already defined by Euberauth
+    get "/:provider/callback", AuthController, :callback
   end
 
   # Other scopes may use custom stacks.

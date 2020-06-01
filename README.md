@@ -43,3 +43,16 @@ https://hexdocs.pm/eex/EEx.html
 Euberauth / OAuth is a library that lets you authenticate yourself using for example a facebook, google or github account on to another aplication.
 
 In this app there's an example with github. So first and foremost you have to go to the developer settings in github, on your account, and register the app in order to get the client ID and client secret for later use with the authentication system
+
+Next you need to define the routes in `router.ex` like so
+
+>    get "/:provider", AuthController, :request # Function already defined by Euberauth \
+\
+>    get "/:provider/callback", AuthController, :callback # We also set this route in the provider's authorization callback url
+
+then we define a `callback` function in our `auth_controller.ex`
+
+inside the conn argument in the callback function we receive some information of the given user by the provider, for example the email, and an api token. We have to define what to do with this information, like registering the user to the database and save the token if the user has to consume more methods from the provider's api
+
+# TODO
+Set the client_id and client_secret for OAuth from environment variables

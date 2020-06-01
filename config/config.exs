@@ -36,6 +36,11 @@ config :ueberauth, Ueberauth,
 #   client_id: System.get_env("GITHUB_CLIENT_ID"),
 #   client_secret: System.get_env("GITHUB_CLIENT_SECRET")
 
+# TODO: This shouldn't be done as it is insecure, use env variables for api keys
+config :ueberauth, Ueberauth.Strategy.Github.OAuth,
+  client_id: "4f4058835c2f1b4a25c1",
+  client_secret: "8ca5d60beeff8a3641e94222d66b8a876be8a2ec"
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"

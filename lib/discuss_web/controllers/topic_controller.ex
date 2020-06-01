@@ -1,10 +1,12 @@
 defmodule DiscussWeb.TopicController do
-  use DiscussWeb, :controller
+  use DiscussWeb, :controller # Here we define that this is a controller
+  # Every controller function receives 2 arguments, conn and params
 
   alias Discuss.Topics.Topic
   alias Discuss.Topics, as: Repo
 
   def index(conn, _params) do
+    IO.inspect(conn.assigns, label: "Assigns: ")
     topics = Repo.list_topics()
     IO.inspect(topics)
     render(conn, "index.html", topics: topics)
