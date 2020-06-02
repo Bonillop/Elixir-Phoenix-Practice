@@ -4,6 +4,7 @@ defmodule Discuss.Topics.Topic do
 
   schema "topics" do
     field :title, :string
+    belongs_to :user, Discuss.Users.User
 
     timestamps()
   end
@@ -11,7 +12,7 @@ defmodule Discuss.Topics.Topic do
   @doc false
   def changeset(topic, attrs) do
     topic
-    |> cast(attrs, [:title])
-    |> validate_required([:title])
+    |> cast(attrs, [:title, :user_id])
+    |> validate_required([:title, :user_id])
   end
 end

@@ -25,6 +25,7 @@ defmodule DiscussWeb.Router do
     # get "/topics/:id/edit", TopicController, :edit
     # put "/topics/:id", TopicController, :update
     # delete "/topics/:id", TopicController, :delete
+    # get "/topics/show/:id", TopicController, :show
 
     # The resources helper defines all the restful routes according to the conventions
     resources "/topics", TopicController

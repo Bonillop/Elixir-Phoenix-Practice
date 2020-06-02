@@ -4,6 +4,7 @@ defmodule Discuss.Topics do
   """
 
   import Ecto.Query, warn: false
+  import Ecto
   alias Discuss.Repo
 
   alias Discuss.Topics.Topic
@@ -49,8 +50,9 @@ defmodule Discuss.Topics do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_topic(attrs \\ %{}) do
-    %Topic{}
+  def create_topic(user, attrs \\ %{}) do
+    user
+    |> build_assoc(:topics)
     |> Topic.changeset(attrs)
     |> Repo.insert()
   end

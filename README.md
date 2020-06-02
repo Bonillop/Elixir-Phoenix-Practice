@@ -54,5 +54,25 @@ then we define a `callback` function in our `auth_controller.ex`
 
 inside the conn argument in the callback function we receive some information of the given user by the provider, for example the email, and an api token. We have to define what to do with this information, like registering the user to the database and save the token if the user has to consume more methods from the provider's api
 
+## Controllers
+Every controller function has two arguments `my_function(conn, params)` conn and params. conn represents the connection, which stores all the connection and request info, params on the other hand represents all the params that are sent to the request, for example an id
+
+## Plugs
+The simple way to understand a plug is that it is basically a middleware
+There are two types of plugs, Module plugs and function plugs.
+
+Module plugs are modules that import Plug.Conn, and have to define two functions, `init(_params)` and `call(conn, _params)`
+the `params` argument in `call` is whatever return value comes from `init`
+`init` defines an initialization that's optional
+`call` defines the implementation logic of the plug everytime it is called
+
+function plugs are just functions that define the implementation which would go in the `call` method of a module plug
+
+plugs must return a connection or halt it and redirect
+
+You can define pipelines with many plugs, example in router.ex
+You can add guards to conditionally apply plugs, example in topic_controller.ex
+
+
 # TODO
 Set the client_id and client_secret for OAuth from environment variables

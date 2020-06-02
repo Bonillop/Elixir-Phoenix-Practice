@@ -17,7 +17,7 @@
         <a href="<%= Routes.topic_path(@conn, :index) %>" class="brand-logo">
           Discussions
         </a>
-        <ul class="right">
+        <ul class="right nav-options">
           <%= if @conn.assigns[:user] do %>
             <li><%= link "Sign out", to: Routes.auth_path(@conn, :signout)%></li>
           <% else %>
