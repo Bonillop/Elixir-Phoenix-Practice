@@ -10,6 +10,12 @@
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
     <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+    <script>
+      // Here we generate the user token for the user authentication in the websocket
+      <%= if @conn.assigns.user do %>
+        window.userToken = "<%= Phoenix.Token.sign(DiscussWeb.Endpoint, "key", @conn.assigns.user.id) %>"
+      <% end %>
+    </script>
   </head>
   <body>
     <nav class="light-blue">

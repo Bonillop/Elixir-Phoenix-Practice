@@ -9,9 +9,7 @@ defmodule DiscussWeb.TopicController do
   plug :check_topic_owner when action in [:update, :edit, :delete]
 
   def index(conn, _params) do
-    IO.inspect(conn.assigns, label: "Assigns: ")
     topics = Topics.list_topics()
-    IO.inspect(topics)
     render(conn, "index.html", topics: topics)
   end
 
@@ -33,7 +31,6 @@ defmodule DiscussWeb.TopicController do
         |> redirect(to: Routes.topic_path(conn, :index))
 
       {:error, changeset} ->
-        IO.inspect(changeset)
         render(conn, "new.html", changeset: changeset)
     end
   end

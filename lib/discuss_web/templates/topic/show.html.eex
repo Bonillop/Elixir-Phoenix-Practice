@@ -1,1 +1,23 @@
-<%= @topic.title %>
+<h5><%= @topic.title %></h5>
+
+<div class="input-field">
+  <textarea class="materialize-textarea"></textarea>
+  <button class="btn">Add Comment</button>
+  <ul class="collection">
+
+  </ul>
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // To make sure that the function is not attempted to call before the DOM is loaded
+    if(window.userToken){
+      window.createSocket(<%= @topic.id %>)
+    } else {
+      document.querySelector(".input-field").innerHTML = `
+      <div class="alert alert-danger">
+        You have sign in to be able to watch and comment
+      </div>
+      `;
+    }
+  });
+</script>
